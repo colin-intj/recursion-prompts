@@ -40,6 +40,11 @@ let isEven = (n) => {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 let sumBelow = (n) => {
+  if (typeof n === 'number') {
+    let numbersToAdd = [...Array(Math.abs(n)).keys()];
+    return n < 0 ? -sumBelow(numbersToAdd) : sumBelow(numbersToAdd);
+  }
+  return n.length && n[0] + sumBelow(n.slice(1));
 };
 
 // 6. Get the integers within a range (x, y).
