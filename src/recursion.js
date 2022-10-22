@@ -25,6 +25,11 @@ let sum = (array) => array.length && array[0] + sum(array.slice(1));
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 let arraySum = (array) => {
+  if (array.length) {
+    const firstItem = array[0];
+    return (Array.isArray(firstItem) ? arraySum(firstItem) : firstItem) + arraySum(array.slice(1));
+  }
+  return 0;
 };
 
 // 4. Check if a number is even.
