@@ -27,7 +27,7 @@ let sum = (array) => array.length && array[0] + sum(array.slice(1));
 let arraySum = (array) => {
   if (array.length) {
     const firstItem = array[0];
-    return (Array.isArray(firstItem) ? arraySum(firstItem) : firstItem) + arraySum(array.slice(1));
+    return (arraySum(firstItem) || firstItem) + arraySum(array.slice(1));
   }
   return 0;
 };
