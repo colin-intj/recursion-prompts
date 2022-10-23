@@ -33,23 +33,20 @@ let arraySum = (array) => {
 };
 
 // 4. Check if a number is even.
-// FIXME: Rewrite this function so it uses recursion
+// FIXME: Rewrite this function so it uses pure recursion
 let isEven = (n) => {
-  if (n === 0) {
-    return true;
-  }
-
-  let nString = Math.abs(n).toString();
-  let innerDividend = +nString[0];
-
-  let remainder;
-  for (let i = 1, nLength = nString.length; i < nLength + 1; i += 1) {
+  let remainder = n;
+  (function calculateRemainder(num, innerDividend = 0) {
+    let nextInnerDividend = innerDividend;
     if (innerDividend > 1) {
       remainder = innerDividend - 2 * Math.floor(innerDividend / 2);
-      innerDividend = remainder;
+      nextInnerDividend = remainder;
     }
-    innerDividend = +(innerDividend.toString() + nString[i]);
-  }
+    nextInnerDividend = +(nextInnerDividend.toString() + num[0]);
+    if (num.length) {
+      calculateRemainder(num.slice(1), nextInnerDividend);
+    }
+  }(Math.abs(n).toString()));
 
   return remainder === 0;
 };
