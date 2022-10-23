@@ -48,12 +48,11 @@ let isEven = (n) => {
 
   let remainder;
   for (let i = 1, nLength = nString.length; i < nLength + 1; i += 1) {
-    if (innerDividend < 2) {
-      innerDividend += nString[i];
-    } else {
+    if (innerDividend > 1) {
       remainder = +innerDividend - 2 * Math.floor(+innerDividend / 2);
-      innerDividend = remainder + nString[i];
+      innerDividend = remainder;
     }
+    innerDividend += nString[i];
   }
 
   return remainder === 0;
