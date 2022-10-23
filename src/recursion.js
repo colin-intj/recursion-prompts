@@ -44,15 +44,15 @@ let isEven = (n) => {
   }
 
   let nString = Math.abs(n).toString();
-  let innerDividend = nString[0];
+  let innerDividend = +nString[0];
 
   let remainder;
   for (let i = 1, nLength = nString.length; i < nLength + 1; i += 1) {
     if (innerDividend > 1) {
-      remainder = +innerDividend - 2 * Math.floor(+innerDividend / 2);
+      remainder = innerDividend - 2 * Math.floor(innerDividend / 2);
       innerDividend = remainder;
     }
-    innerDividend += nString[i];
+    innerDividend = +(innerDividend.toString() + nString[i]);
   }
 
   return remainder === 0;
