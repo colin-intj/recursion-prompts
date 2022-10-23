@@ -44,7 +44,6 @@ let isEven = (n) => {
   }
 
   let nString = Math.abs(n).toString();
-  let quotient = '';
   let innerDividend = nString[0];
 
   let remainder;
@@ -52,9 +51,7 @@ let isEven = (n) => {
     if (innerDividend < 2) {
       innerDividend += nString[i];
     } else {
-      let subtrahend = Math.floor(+innerDividend / 2) * 2;
-      quotient += Math.floor(+innerDividend / 2);
-      remainder = +innerDividend - subtrahend;
+      remainder = +innerDividend - 2 * Math.floor(+innerDividend / 2);
       innerDividend = remainder + nString[i];
     }
   }
