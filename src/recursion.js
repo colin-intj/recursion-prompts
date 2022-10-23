@@ -33,7 +33,33 @@ let arraySum = (array) => {
 };
 
 // 4. Check if a number is even.
+// FIXME: Rewrite this function so it uses recursion
 let isEven = (n) => {
+  if (n === 0) {
+    return true;
+  }
+
+  if (Math.abs(n) < 2) {
+    return false;
+  }
+
+  let nString = Math.abs(n).toString();
+  let quotient = '';
+  let innerDividend = nString[0];
+
+  let remainder;
+  for (let i = 1, nLength = nString.length; i < nLength + 1; i += 1) {
+    if (innerDividend < 2) {
+      innerDividend += nString[i];
+    } else {
+      let subtrahend = Math.floor(+innerDividend / 2) * 2;
+      quotient += Math.floor(+innerDividend / 2);
+      remainder = +innerDividend - subtrahend;
+      innerDividend = remainder + nString[i];
+    }
+  }
+
+  return remainder === 0;
 };
 
 // 5. Sum all integers below a given integer.
