@@ -39,10 +39,6 @@ let isEven = (n) => {
     return true;
   }
 
-  if (Math.abs(n) < 2) {
-    return false;
-  }
-
   let nString = Math.abs(n).toString();
   let innerDividend = +nString[0];
 
