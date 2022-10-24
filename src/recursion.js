@@ -34,22 +34,17 @@ let arraySum = (array) => {
 
 // 4. Check if a number is even.
 // FIXME: Rewrite this function so it uses pure recursion
-let isEven = (n) => {
-  let remainder = n;
-  (function calculateRemainder(num, innerDividend = 0) {
-    let nextInnerDividend = innerDividend;
-    if (innerDividend > 1) {
-      remainder = innerDividend - 2 * Math.floor(innerDividend / 2);
-      nextInnerDividend = remainder;
-    }
-    nextInnerDividend = +(nextInnerDividend.toString() + num[0]);
-    if (num.length) {
-      calculateRemainder(num.slice(1), nextInnerDividend);
-    }
-  }(Math.abs(n).toString()));
-
-  return remainder === 0;
-};
+let isEven = (n) => (function recursiveFunction(nString, remainder) {
+  let remainderArgument = remainder;
+  if (remainderArgument > 1) {
+    remainderArgument -= 2 * Math.floor(remainderArgument / 2);
+  }
+  if (nString.length === 0) {
+    return remainderArgument === 0;
+  }
+  remainderArgument = +(remainderArgument.toString() + nString[0]);
+  return recursiveFunction(nString.slice(1), remainderArgument);
+}(Math.abs(n).toString(), 0));
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
